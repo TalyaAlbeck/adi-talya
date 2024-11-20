@@ -9,3 +9,21 @@
   border: 2px solid black;
   border-radius: 10px;
 }
+
+.folderBodyDiv {
+  z-index: 2;
+  background-color: white;
+  position: absolute;
+  top: 15%;
+  left: 33%;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 400px;
+  height: 400px;
+}
+
+.closeButton {
+  position: relative;
+  bottom: -310px;
+}

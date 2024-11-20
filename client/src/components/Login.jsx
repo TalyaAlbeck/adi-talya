@@ -22,6 +22,9 @@ export default function Login(props) {
     
 		if (data){
       navigate(`/folder/${username}`)
+    } else {
+      console.log("data: ", typeof data);
+      
     }
 		
     } catch(err) {
@@ -32,7 +35,7 @@ export default function Login(props) {
     //server check if user is true
     //create currentUser and LS setItem it
     //only if true Navigate to folder!!
-    navigate("/folder")
+    navigate(`/folder/${username}`)
 
   }
 

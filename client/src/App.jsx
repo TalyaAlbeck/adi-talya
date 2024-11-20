@@ -16,8 +16,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login setUserData={setUserData} username={username} setUsername={setUsername} />}/>
+        <Route path="/" element={<Login setUserData={setUserData} username={username} setUsername={setUsername} />}/>
         <Route path="/Signup" element={<Signup setUserData={setUserData} />}/>
-        <Route path="/folder/:userName" element={<Folders setUserData={setUserData} username={username} setUsername={setUsername}/>}>
+        <Route path="/folder/:userName" element={<Folders username={username}/>}>
           {/* <Route path="/folder/file" element={<File />}/> */}
         </Route>
         <Route path="*" element={<h1>404 not found</h1>} />

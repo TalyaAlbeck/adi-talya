@@ -4,8 +4,9 @@ const fs = require('fs');
 const { ls } = require("../folderHandler")
 
 
-router.get(`/`, (req, res) => {
-    res.send("ninini");
+router.get(`/:username`, async (req, res) => {
+    console.log(req.params.username);
+    res.send(await ls("talya"));
 })
 
 module.exports = router;

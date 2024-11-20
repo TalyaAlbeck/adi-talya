@@ -3,30 +3,44 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Folder({userData}) {
+export default function Folder({username}) {
+    const [userData, setUserData] = useState(null)
     const [filderName, setFolderName] = useState('')
     const [showBody, setShowBody] = useState(undefined)
-    // const [index, setIndex] = useState()
-    console.log(userData);
+	
     function openFolder(item, index) {
-        console.log(item);
         setFolderName(item) 
         showBody === index ? setShowBody(undefined) : setShowBody(index)          
     }
 
-    // useEffect(async () => {
-    //   const data = await fetch(`http://localhost:3000/folder/`)
-    // }, [])
+    useEffect(() => {
+		async function getUserData() {
+			
+			try {
+				const res = await fetch(`http://localhost:8080/folder/${username}`);
+				if (!res.ok) throw Error("there is no folder for this user")
+					const data = await res.json();
+					console.log(JSON.stringify(data));
+					const Udata = await setUserData(data)
+			} catch(err) {
+				console.log(err);
+				
+			}
+		}
+		getUserData()
+    }, [])
     
   return (
     <>
     <p>the path is: folders // {filderName.name}</p>
-    {userData.map((item, index) => {
+    {userData ? userData.map((item, index) => {
         return (<>
         <div className='foldersDivs' key={index} onDoubleClick={() => openFolder(item, index)}>{(item.name)}</div>
-        {showBody === index && <div className='folderBodyDiv'>{item.body}</div>}
+        {showBody === index && <div className='folderBodyDiv'>{item.body}<br /> 
+		<button className='closeButton'
+		onClick={() => setShowBody(undefined)}>close</button></div>}
         </>)
-    })}
+    }) : <h1>there is no information</h1>}
     </>
   )
 }
