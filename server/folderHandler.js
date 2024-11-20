@@ -5,7 +5,9 @@ exports.ls = async function (name) {
     const filesArr = [];
     for (let file of files) {
         const fileContent = await fs.promises.readFile(`folders/${name}/${file}`, { encoding: 'utf-8' })
-        filesArr.push(fileContent)
+        if (file !== `${name}.json`) {
+            filesArr.push({ name: file, body: fileContent })
+        }
     }
     return filesArr;
 
@@ -14,14 +16,14 @@ exports.ls = async function (name) {
 exports.makedir = async function (folderName) {
     try {
         await fs.promises.access(`./folders/${folderName}`);
-
         console.log("this folder already exists");
         return false;
 
     } catch (err) {
 
         console.log(`${folderName} was maked!`);
-        fs.mkdirSync(`./folders/${folderName}`)
+        await fs.promises.mkdir(`./folders/${folderName}`)
+        await fs.promises.appendFile(`./folders/${folderName}/${folderName}.json`, JSON.stringify({ name: folderName }))
         return true;
     }
 }
