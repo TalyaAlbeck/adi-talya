@@ -3,7 +3,8 @@ var router = express.Router();
 const fs = require('fs');
 
 
-function ls() {
+function ls(name) {
+  console.log(name);
 
   fs.readdir("folders", (err, res) => {
     if (err) {
@@ -16,6 +17,10 @@ function ls() {
           if (err) {
             console.error(err);
             return;
+          }
+          if (res[i] === name) {
+            console.log("the folder is " + name + "!!!");
+            return "found!";
           }
           // stats.isFile(); // true
           if (stats.isFile()) { console.log(res[i] + " is a file") }
@@ -30,8 +35,11 @@ function ls() {
 
 
 router.post('/', (req, res) => {
-  ls()
+  console.log(req.body);
+
+  res.send(ls(req.body.username))
 })
+
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });

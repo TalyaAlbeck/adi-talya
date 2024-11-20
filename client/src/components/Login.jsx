@@ -6,8 +6,24 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState([]);
     
-  function loginHandler () {
+  async function loginHandler () {
     console.log("hhhh")
+    try {
+      console.log("username:", JSON.stringify({userName: username}))
+    const res = await fetch("http://localhost:8080/", {
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username})
+    })
+      if(!res.ok) throw Error("404 user not found");
+      const data = await res.json();
+      console.log(data);
+      
+    } catch(err) {
+      console.error(err);
+      
+    }
+
     //API post user?
     //server check if user is true
     //create currentUser and LS setItem it
@@ -21,7 +37,7 @@ export default function Login() {
       <input placeholder="user name" onChange={(e) => setUsername(e.target.value)} /><br />
       <input placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br />
 
-      <button onClick={loginHandler}>login</button>
+      <button onClick={(e) => {e.preventDefault(); loginHandler()}}>login</button>
 
       <p>dont have an acount?</p>
       <NavLink to="/signup">signup</NavLink>
