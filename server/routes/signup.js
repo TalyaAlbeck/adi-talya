@@ -6,13 +6,13 @@ const findUser = require("../folderHandler")
 function signUp(name) {
     if (findUser.makedir(name)) {
         console.log("welcome!");
+        return JSON.stringify("nini")
     } else return false;
 }
 
 
 router.post('/', (req, res) => {
     console.log(req.body);
-
     res.send(signUp(req.body.username))
 })
 

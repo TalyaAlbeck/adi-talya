@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 export default function Signup() {
-  const [username, setUserName] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+	const navigate = useNavigate();
+  	const [username, setUserName] = useState("");
+  	const [userPassword, setUserPassword] = useState("");
   //   const navigate = useNavigate();
 
 
@@ -25,12 +26,15 @@ export default function Signup() {
     })
 		if(!res.ok) throw Error("this user is alredy exist, pleas choose diferent user name");
 		const data = await res.json();
-		console.log(JSON.stringify(data), nini);
+    if(data) {
+      navigate(`/folder/${username}`)
+    }
       
     } catch(err) {
       	console.error(err);
       
     }
+	navigate(`/folder/${username}`)
 
    //server check if user is fine
 
