@@ -15,10 +15,14 @@ export default function Signup() {
       username: username,
       password: userPassword,
     };
+    
+    //API post newUser
+   //server check if user is fine
   
     
     localStorage.setItem("currentUser", JSON.stringify(newUser));
     navigate("/folder");
+
   };
   
   return (

@@ -8,6 +8,11 @@ export default function Login() {
     
   function loginHandler () {
     console.log("hhhh")
+    //API post user?
+    //server check if user is true
+    //create currentUser and LS setItem it
+    //only if true Navigate to folder!!
+
   }
 
   return (
