@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Login(props) {
+export default function Login({setUserData}, props) {
   const navigate = useNavigate();
   const [password, setPassword] = useState([]);
   let username = props.username
@@ -14,11 +14,15 @@ export default function Login(props) {
 		const res = await fetch("http://localhost:8080/login", {
 		method: 'POST', 
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({username})
+		body: JSON.stringify({username, password})
     })
-		if(!res.ok) throw Error("404 user not found");
+		if(!res.ok) throw Error("user or password is incorrect");
 		const data = await res.json();
-		console.log((data));
+    setUserData(data);
+    
+		if (data){
+      navigate(`/folder/${username}`)
+    }
 		
     } catch(err) {
         alert(err)
@@ -35,8 +39,8 @@ export default function Login(props) {
   return (
     <form>
       <h1>log in:</h1>
-      <input placeholder="user name" onChange={(e) => setUsername(e.target.value)} /><br />
-      <input placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br />
+      <input placeholder="user name" onChange={(e) => setUsername(e.target.value)} required minLength={3} maxLength={20}/><br />
+      <input placeholder="password" onChange={(e) => setPassword(e.target.value)} required minLength={3} maxLength={20}/><br />
 
       <button onClick={(e) => {e.preventDefault(); loginHandler()}}>login</button>
 

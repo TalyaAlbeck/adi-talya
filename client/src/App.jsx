@@ -7,15 +7,17 @@ import Folders from './components/Folder'
 import File from './components/File';
 
 function App() {
+  const [userData, setUserData] = useState([])
   const [username, setUsername] = useState("");
+
 
   return (
     <>
     <Router>
       <Routes>
-        <Route path="/login" element={<Login username={username} setUsername={setUsername}/>}/>
-        <Route path="/Signup" element={<Signup />}/>
-        <Route path="/folder" element={<Folders username={username} setUsername={setUsername}/>}>
+        <Route path="/login" element={<Login setUserData={setUserData} username={username} setUsername={setUsername}/>}/>
+        <Route path="/Signup" element={<Signup setUserData={setUserData} />}/>
+        <Route path="/folder/:userName" element={<Folders setUserData={setUserData} username={username} setUsername={setUsername}/>}>
           {/* <Route path="/folder/file" element={<File />}/> */}
         </Route>
         <Route path="*" element={<h1>404 not found</h1>} />

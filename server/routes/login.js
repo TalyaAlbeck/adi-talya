@@ -16,10 +16,13 @@ router.post('/', async (req, res) => {
 
     try {
         //accses
-        await fs.promises.access(`folders/${req.body.username}`)
+        let data = await fs.promises.readFile(`folders/${req.body.username}/${req.body.username}.json`)
+        if (JSON.parse(data).password !== req.body.password) {
+            res.status(404).send("name or password is incorrect")
+            return
+        }
     } catch (err) {
-        res.status(404)
-        res.send(JSON.stringify("this user already exists"))
+        res.status(404).send("this user is not exists")
         return;
     }
     res.send(await ls(req.body.username))
