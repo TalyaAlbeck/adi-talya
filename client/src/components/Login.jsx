@@ -18,10 +18,8 @@ export default function Login() {
   return (
     <form>
       <h1>log in:</h1>
-      <label>user name:</label>
-      <input onChange={(e) => setUsername(e.target.value)} />
-      <label>password:</label>
-      <input onChange={(e) => setPassword(e.target.value)} />
+      <input placeholder="user name" onChange={(e) => setUsername(e.target.value)} /><br />
+      <input placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br />
 
       <button onClick={loginHandler}>login</button>
 

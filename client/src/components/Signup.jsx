@@ -29,10 +29,8 @@ export default function Signup() {
     <>
       <div id="signup">
         <h1>Sign up:</h1>
-        <label>user name:</label>
-        <input onChange={(e) => setUserName(e.target.value)} />
-        <label>password:</label>
-        <input onChange={(e) => setUserPassword(e.target.value)} />
+        <input placeholder="user name" onChange={(e) => setUserName(e.target.value)} /><br />
+        <input placeholder="password" onChange={(e) => setUserPassword(e.target.value)} /><br />
 
         <button onClick={signHandler}>signup</button>
 
