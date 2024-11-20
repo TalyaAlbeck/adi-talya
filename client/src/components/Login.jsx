@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Login({setUserData}) {
+export default function Login({setUserData}, props) {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState([]);
+  let username = props.username
+  let setUsername = props.setUsername
     
   async function loginHandler () {
     //API post user?
@@ -31,6 +32,7 @@ export default function Login({setUserData}) {
     //server check if user is true
     //create currentUser and LS setItem it
     //only if true Navigate to folder!!
+    navigate("/folder")
 
   }
 

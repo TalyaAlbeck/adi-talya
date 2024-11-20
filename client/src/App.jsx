@@ -3,19 +3,23 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import './App.css'
 import Login from './components/Login'
 import Signup from './components/Signup';
-import Folder from './components/Folder';
+import Folders from './components/Folder'
+import File from './components/File';
 
 function App() {
   const [userData, setUserData] = useState([])
+  const [username, setUsername] = useState("");
+
 
   return (
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Login setUserData={setUserData}/>}/>
-        <Route path="/login" element={<Login setUserData={setUserData}/>}/>
-        <Route path="/Signup" element={<Signup />}/>
-        <Route path="/folder/:userName" element={<Folder userData={userData}/>}/>
+        <Route path="/login" element={<Login setUserData={setUserData} username={username} setUsername={setUsername}/>}/>
+        <Route path="/Signup" element={<Signup setUserData={setUserData} />}/>
+        <Route path="/folder/:userName" element={<Folders setUserData={setUserData} username={username} setUsername={setUsername}/>}>
+          {/* <Route path="/folder/file" element={<File />}/> */}
+        </Route>
         <Route path="*" element={<h1>404 not found</h1>} />
       </Routes>
     </Router>
