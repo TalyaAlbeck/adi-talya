@@ -3,9 +3,18 @@ var router = express.Router();
 const fs = require('fs');
 const findUser = require("../folderHandler")
 
+function signUp(name) {
+    if (findUser.makedir(name)) {
+        console.log("welcome!");
+
+    }
+}
+
+
 router.post('/', (req, res) => {
-    console.log("body: ", req.body);
-    res.send(findUser.ls(req.body.username))
+    console.log(req.body);
+
+    res.send(signUp(req.body.username))
 })
 
 module.exports = router;
