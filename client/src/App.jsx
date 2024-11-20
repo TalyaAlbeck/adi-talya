@@ -15,7 +15,7 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/login" element={<Login setUserData={setUserData} username={username} setUsername={setUsername}/>}/>
+        <Route path="/login" element={<Login setUserData={setUserData} username={username} setUsername={setUsername} />}/>
         <Route path="/Signup" element={<Signup setUserData={setUserData} />}/>
         <Route path="/folder/:userName" element={<Folders setUserData={setUserData} username={username} setUsername={setUsername}/>}>
           {/* <Route path="/folder/file" element={<File />}/> */}

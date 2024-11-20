@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Login({setUserData}, props) {
+export default function Login(props) {
   const navigate = useNavigate();
-  const [password, setPassword] = useState([]);
+  const [password, setPassword] = useState("");
   let username = props.username
   let setUsername = props.setUsername
     
@@ -18,7 +18,7 @@ export default function Login({setUserData}, props) {
     })
 		if(!res.ok) throw Error("user or password is incorrect");
 		const data = await res.json();
-    setUserData(data);
+    props.setUserData(data);
     
 		if (data){
       navigate(`/folder/${username}`)
@@ -39,7 +39,7 @@ export default function Login({setUserData}, props) {
   return (
     <form>
       <h1>log in:</h1>
-      <input placeholder="user name" onChange={(e) => setUsername(e.target.value)} required minLength={3} maxLength={20}/><br />
+      <input placeholder="user name" onChange={(e) => props.setUsername(e.target.value)} required minLength={3} maxLength={20}/><br />
       <input placeholder="password" onChange={(e) => setPassword(e.target.value)} required minLength={3} maxLength={20}/><br />
 
       <button onClick={(e) => {e.preventDefault(); loginHandler()}}>login</button>
