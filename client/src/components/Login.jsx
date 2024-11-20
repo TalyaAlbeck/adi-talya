@@ -7,24 +7,23 @@ export default function Login() {
   const [password, setPassword] = useState([]);
     
   async function loginHandler () {
-    console.log("hhhh")
+    //API post user?
     try {
-      console.log("username:", JSON.stringify({userName: username}))
-    const res = await fetch("http://localhost:3000/login", {
-      method: 'POST', 
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({username})
+		console.log("username:", JSON.stringify({userName: username}))
+		const res = await fetch("http://localhost:8080/login", {
+		method: 'POST', 
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({username})
     })
-      if(!res.ok) throw Error("404 user not found");
-      const data = await res.json();
-      console.log(data);
-      
+		if(!res.ok) throw Error("404 user not found");
+		const data = await res.json();
+		console.log(JSON.stringify(data));
+		
     } catch(err) {
-      console.error(err);
+      	console.error(err);
       
     }
 
-    //API post user?
     //server check if user is true
     //create currentUser and LS setItem it
     //only if true Navigate to folder!!

@@ -17,11 +17,23 @@ export default function Signup() {
     };
     
     //API post newUser
+    try {
+		console.log("username:", JSON.stringify({userName: username}))
+		const res = await fetch("http://localhost:8080/signup", {
+		method: 'POST', 
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(newUser)
+    })
+		if(!res.ok) throw Error("404 user not found");
+		const data = await res.json();
+		console.log(JSON.stringify(data), nini);
+      
+    } catch(err) {
+      	console.error(err);
+      
+    }
+
    //server check if user is fine
-  
-    
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    navigate("/folder");
 
   };
   

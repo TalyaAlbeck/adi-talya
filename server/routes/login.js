@@ -15,7 +15,7 @@ function ls(name) {
         else {
             console.log(res);
             for (let i = 0; i < res.length; i++) {
-                fs.stat(path.join(__dirname, `..`, `/folders/${res[i]}`)th.join(__dirname, `..`, `/folders/${res[i]}`), (err, stats) => {
+                fs.stat(path.join(__dirname, `..`, `/folders/${res[i]}`).path.join(__dirname, `..`, `/folders/${res[i]}`), (err, stats) => {
                     if (err) {
                         console.error(err);
                         return;
@@ -37,26 +37,11 @@ function ls(name) {
 const options = {
     root: __dirname
 }
+const findUser = require("../folderHandler")
 
 router.post('/', (req, res) => {
-    console.log(req.body);
-    //create new folder 
-    const content = fs.readFile('/Users/joe/test.html', 'utf8', (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log(data);
-      });
-    fs.appendFile(JSON.stringify(req.body.username), content, err => {
-        if (err) {
-            console.error(err);
-        } else {
-            // done!
-        }
-    });
-    //all the foledrs
-    res.send(ls(req.body.username))
+    console.log("body: ", req.body);
+    res.send(findUser.ls(req.body.username))
 })
 
 module.exports = router;
