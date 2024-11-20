@@ -10,7 +10,7 @@ export default function Login() {
     console.log("hhhh")
     try {
       console.log("username:", JSON.stringify({userName: username}))
-    const res = await fetch("http://localhost:8080/login", {
+    const res = await fetch("http://localhost:3000/login", {
       method: 'POST', 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({username})
