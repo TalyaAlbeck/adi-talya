@@ -29,14 +29,15 @@ exports.ls = function (name) {
 
 exports.makedir = async function (folderName) {
     try {
-        await fs.promises.access(folderName)
-        console.log("this folder alredy exist");
+        await fs.promises.access(`./folders/${folderName}`);
+
+        console.log("this folder already exists");
         return false;
 
-    } catch {
-        fs.mkdirSync(`./folders/${folderName}`)
-        console.log(`${folderName} was maked!`);
-        return true;
+    } catch (err) {
 
+        console.log(`${folderName} was maked!`);
+        fs.mkdirSync(`./folders/${folderName}`)
+        return true;
     }
 }

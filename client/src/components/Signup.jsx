@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Signup() {
   const [username, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
-
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
 
   const signHandler = async () => {
@@ -24,7 +23,7 @@ export default function Signup() {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(newUser)
     })
-		if(!res.ok) throw Error("404 user not found");
+		if(!res.ok) throw Error("this user is alredy exist, pleas choose diferent user name");
 		const data = await res.json();
 		console.log(JSON.stringify(data), nini);
       
@@ -47,7 +46,7 @@ export default function Signup() {
         <button onClick={signHandler}>signup</button>
 
         <p>have an acount?</p>
-        <NavLink to="/">login</NavLink>
+        <NavLink to="/login">login</NavLink>
       </div>
     </>
   );
