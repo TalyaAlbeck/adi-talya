@@ -17,10 +17,10 @@ export default function Login() {
     })
 		if(!res.ok) throw Error("404 user not found");
 		const data = await res.json();
-		console.log(JSON.stringify(data));
+		console.log((data));
 		
     } catch(err) {
-      	console.error(err);
+        alert(err)
       
     }
 

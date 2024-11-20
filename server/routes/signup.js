@@ -6,8 +6,7 @@ const findUser = require("../folderHandler")
 function signUp(name) {
     if (findUser.makedir(name)) {
         console.log("welcome!");
-
-    }
+    } else return false;
 }
 
 
