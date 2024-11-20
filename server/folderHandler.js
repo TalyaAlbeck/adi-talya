@@ -1,30 +1,10 @@
 const fs = require('fs');
 
-exports.ls = function (name) {
-    fs.readdir("folders", (err, res) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(res);
-            for (let i = 0; i < res.length; i++) {
-                fs.stat(`./folders/${res[i]}`, (err, stats) => {
-                    if (err) {
-                        console.error(err);
-                        return;
-                    }
-                    if (res[i] === name) {
-                        console.log("the folder is " + name + "!!!");
-                        return true;
-                    }
-                    if (stats.isFile()) { console.log(res[i] + " is a file") }
-                    else console.log(res[i] + " is a folder")
-                })
+exports.ls = async function (name) {
+    const files = await fs.promises.readdir(`folders/${name}`);
 
-            }
-        }
+    return files;
 
-    })
 }
 
 exports.makedir = async function (folderName) {

@@ -3,9 +3,9 @@ var router = express.Router();
 const fs = require('fs');
 const { ls } = require("../folderHandler")
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     console.log("body: ", req.body);
-    res.send(ls(req.body.username))
+    res.send(await ls(req.body.username))
 })
 
 module.exports = router;
