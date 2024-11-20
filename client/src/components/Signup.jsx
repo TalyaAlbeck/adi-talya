@@ -10,16 +10,19 @@ export default function Signup() {
 
 
   const signHandler = async () => {
-    console.log('usersArr: ', usersArr);
 
     const newUser = {
       username: username,
       password: userPassword,
     };
+    
+    //API post newUser
+   //server check if user is fine
   
     
     localStorage.setItem("currentUser", JSON.stringify(newUser));
     navigate("/folder");
+
   };
   
   return (
