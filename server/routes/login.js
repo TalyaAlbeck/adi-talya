@@ -6,6 +6,14 @@ const { ls } = require("../folderHandler")
 
 router.post('/', async (req, res) => {
     console.log("body: ", req.body);
+
+    if (!req.body.username) {
+        // to do: return an error
+        res.status(404)
+        res.send(JSON.stringify("unvalid"))
+        return
+    }
+
     try {
         //accses
         await fs.promises.access(`folders/${req.body.username}`)
