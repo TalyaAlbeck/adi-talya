@@ -10,6 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />}/>
+        <Route path="/login" element={<Login />}/>
         <Route path="*" element={<h1>404 not found</h1>} />
       </Routes>
     </Router>
