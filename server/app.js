@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/file');
 var loginRouter = require('./routes/login');
 var signUpRoute = require('./routes/signup');
+var folderRoute = require('./routes/folder');
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use('/', indexRouter);
 app.use('/file', usersRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signUpRoute);
+app.use('/folder', folderRoute);
 
 module.exports = app;
