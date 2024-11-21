@@ -5,13 +5,13 @@
   text-align: center;
 }
 
-.foldersDivs {
+/* .foldersDivs {
   border: 2px solid black;
   border-radius: 10px;
   width: 130px;
-}
+} */
 
-.folderBodyDiv {
+/* .folderBodyDiv {
   z-index: 2;
   background-color: white;
   position: absolute;
@@ -22,13 +22,112 @@
   border-radius: 10px;
   width: 400px;
   min-height: 400px;
-  max-height: 400px;
+  max-height: 400px; */
   /* overflow-y: scroll; */
-}
+/* } */
 
-.closeButton {
+/* .closeButton {
   position: relative;
   top: -190px;
   left: 190px;
   color: lightgray
+} */
+
+/* עיצוב בסיסי לדפים */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* עיצוב לתיקיות */
+.foldersDivs {
+  background-color: #bababa;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foldersDivs:hover {
+  background-color: #909090;
+}
+.fileDiv{
+  background-color: white;
+}
+.fileDiv:hover {
+  background-color: rgb(215, 215, 215);
+}
+
+.folderBodyDiv {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  cursor: pointer;
+  color: #f44336;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.closeButton:hover {
+  color: #d32f2f;
+}
+
+/* תצוגה של התיקיות והמקטעים */
+.folderContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.folderIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+.folderIcon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.folderIcon p {
+  text-align: center;
+  color: #333;
 }

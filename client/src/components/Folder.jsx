@@ -47,10 +47,10 @@ export default function Folder() {
   }, []);
 
   const filesStyle = {
-    backgroundColor: "Pink",
+    backgroundColor: "white",
   };
   const folderStyle = {
-    backgroundColor: "lightblue",
+    backgroundColor: "bdbdbd",
   };
 
   //to do: check if the item is folder oe file and treat it diferently
@@ -65,10 +65,10 @@ export default function Folder() {
             return (
               <>
                 <div
-                  className="foldersDivs"
+                  className={item.type ? "foldersDivs fileDiv" : "foldersDivs"}
                   key={`${item.name}.${index}`}
                   onDoubleClick={() => openFolder(item, index)}
-                  style={item.type ? filesStyle : folderStyle}
+                  //   style={item.type ? filesStyle : folderStyle}
                 >
                   {item.name}
                 </div>
