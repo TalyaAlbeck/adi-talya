@@ -7,14 +7,9 @@ const username = localStorage.getItem("currentusername");
 export default function Folder() {
   const firstGetUrl = `http://localhost:8080/folder/${username}`;
 
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
   const [folderPath, setFolderPath] = useState("");
   const [showBody, setShowBody] = useState(undefined);
-
-  // function openFolder(item, index) {
-  //     setFolderName(item)
-  //     showBody === index ? setShowBody(undefined) : setShowBody(index);
-  // }
 
   async function getUserData(url) {
     try {
