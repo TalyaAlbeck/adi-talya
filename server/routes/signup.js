@@ -22,8 +22,12 @@ router.post('/', async (req, res) => {
         // let data = await fs.promises.readFile(`folders/${req.body.username}/${req.body.username}.json`)
         console.log('req.body.username.json(): ', req.body.username);
         console.log('data: ', data);
-        if (!data) {
+        if (data) {
             res.status(200)
+            res.end()
+        }
+        if (!data) {
+            res.status(404)
             res.end()
         }
     } catch (err) {

@@ -23,7 +23,10 @@ export default function Signup() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser)
       })
-      if (!res.ok) throw Error("this user is alredy exist, pleas choose diferent user name");
+      if (res.status === 404) {
+        alert("username taken");
+        throw Error("this user is alredy exist, pleas choose diferent user name");
+      }
       // const data = await res.json();
       // if (data) {
       if (res.ok) {
