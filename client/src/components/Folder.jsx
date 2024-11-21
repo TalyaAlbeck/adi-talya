@@ -1,7 +1,6 @@
 //shows all the folders of user
 //API get
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 const username = localStorage.getItem("currentusername");
 
 export default function Folder() {
@@ -65,7 +64,7 @@ export default function Folder() {
             return (
               <>
                 <div
-                  className={item.type ? "foldersDivs fileDiv" : "foldersDivs"}
+                  className={item.type ? "Divs fileDiv" : "Divs folderDiv"}
                   key={`${item.name}.${index}`}
                   onDoubleClick={() => openFolder(item, index)}
                   //   style={item.type ? filesStyle : folderStyle}

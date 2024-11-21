@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { FaRegFolderOpen } from "react-icons/fa6";
-import { FaRegFile } from "react-icons/fa";
 
 const username = localStorage.getItem("currentusername");
 
-export default function File() {
+export default function Folder() {
   const firstGetUrl = `http://localhost:8080/folder/${username}`;
-
   const [userData, setUserData] = useState([]);
   const [folderPath, setFolderPath] = useState("");
-  const [showBody, setShowBody] = useState(undefined);
+  const [showBody, setShowBody] = useState(null);
 
   async function getUserData(url) {
     try {
       const res = await fetch(url);
-      if (!res.ok) throw Error("there is no folder for this user");
+      if (!res.ok) throw Error("There is no folder for this user");
       const data = await res.json();
       setUserData(data);
     } catch (err) {
@@ -23,20 +20,38 @@ export default function File() {
   }
 
   function openFolder(item, index) {
-    setFolderPath((prev) => prev + "/" + item.name);
+    const newPath = `${folderPath}/${item.name}`;
+    setFolderPath(newPath);
+
     if (item.type) {
-      showBody === index ? setShowBody(undefined) : setShowBody(index);
+      setShowBody(showBody === index ? null : index);
     } else {
-      const path = `${firstGetUrl}/${folderPath + "/" + item.name}`;
+      const path = `${firstGetUrl}${newPath}`;
       getUserData(path);
     }
   }
 
   function goBack() {
     const lastIndex = folderPath.lastIndexOf("/");
-    const backUrl = folderPath.slice(0, lastIndex);
-    getUserData(firstGetUrl + backUrl);
-    const newPath = folderPath.split(`/`).slice(0, -1).join("/");
+
+    if (lastIndex > 0) {
+      const backUrl = folderPath.slice(0, lastIndex);
+      getUserData(`${firstGetUrl}${backUrl ? "/" + backUrl : ""}`)
+        .then(() => {
+          setFolderPath(backUrl);
+        })
+        .catch(() => {
+          alert("The folder does not exist!");
+        });
+    } else {
+      setFolderPath("");
+      getUserData(firstGetUrl);
+    }
+  }
+
+  function closeFile() {
+    setShowBody(null);
+    const newPath = folderPath.split("/").slice(0, -1).join("/");
     setFolderPath(newPath);
   }
 
@@ -46,47 +61,63 @@ export default function File() {
 
   return (
     <>
-      <div className="folderContent">
-        {userData ? (
-          <>
-            {userData.map((item, index) => {
-              return (
-                <div key={index} className="folderIcon">
+      <p>Here are your folders:</p>
+      {userData ? (
+        <>
+          {/* תיקיות */}
+          <div className="folders-section">
+            <h3>Folders</h3>
+            <div className="folders">
+              {userData
+                .filter((item) => !item.type)
+                .map((item, index) => (
                   <div
-                    className="foldersDivs"
+                    className="folderDiv"
+                    key={`${item.name}.${index}`}
                     onDoubleClick={() => openFolder(item, index)}
                   >
-                    {item.type ? <FaRegFile /> : <FaRegFolderOpen />}
-                    <br />
+                    <img src="folder-icon.png" alt="Folder" />
                     <p>{item.name}</p>
                   </div>
-                  {showBody === index && (
-                    <div className="folderBodyDiv">
-                      <p>Path: folders{folderPath}</p>
-                      <p>{item.body}</p>
-                      <h4
-                        className="closeButton"
-                        onClick={() => {
-                          setShowBody(undefined);
-                          const newPath = folderPath.split(`/${item.name}`)[0];
-                          setFolderPath(newPath);
-                        }}
-                      >
-                        x
-                      </h4>
-                    </div>
-                  )}
+                ))}
+            </div>
+          </div>
+
+          <div className="files-section">
+            <h3>Files</h3>
+            {userData
+              .filter((item) => item.type)
+              .map((item, index) => (
+                <div
+                  className="fileDiv"
+                  key={`${item.name}.${index}`}
+                  onDoubleClick={() => openFolder(item, index)}
+                >
+                  <img src="file-icon.png" alt="File" />
+                  <p>{item.name}</p>
                 </div>
-              );
-            })}
-            {folderPath.split(`/`).length > 1 && (
-              <button onClick={goBack}>Back</button>
-            )}
-          </>
-        ) : (
-          <h1>No information available</h1>
-        )}
-      </div>
+              ))}
+          </div>
+
+          {folderPath.split(`/`).length > 1 && (
+            <button onClick={goBack} className="backButton">
+              Back
+            </button>
+          )}
+        </>
+      ) : (
+        <h1>No information available</h1>
+      )}
+
+      {showBody !== null && (
+        <div className="folderBodyDiv">
+          <p>The path is: folders{folderPath}</p>
+          <p>{userData[showBody].body}</p>
+          <h4 className="closeButton" onClick={closeFile}>
+            x
+          </h4>
+        </div>
+      )}
     </>
   );
 }
