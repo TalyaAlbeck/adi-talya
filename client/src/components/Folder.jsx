@@ -2,14 +2,14 @@
 //API get
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+const username = localStorage.getItem("currentusername")
 
-export default function Folder({username}) {
+export default function Folder() {
   const firstGetUrl = `http://localhost:8080/folder/${username}`;
 
     const [userData, setUserData] = useState(null)
     const [folderPath, setFolderPath] = useState('')
     const [showBody, setShowBody] = useState(undefined)
-    const username = localStorage.getItem("currentusername")
 
 	
     // function openFolder(item, index) {
