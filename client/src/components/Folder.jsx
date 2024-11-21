@@ -3,11 +3,12 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Folder({username}) {
+export default function Folder() {
     const [userData, setUserData] = useState(null)
     const [filderName, setFolderName] = useState('')
     const [showBody, setShowBody] = useState(undefined)
-	
+    const username = localStorage.getItem("currentusername")
+    console.log('username: ', username);
     function openFolder(item, index) {
         setFolderName(item) 
         showBody === index ? setShowBody(undefined) : setShowBody(index);        

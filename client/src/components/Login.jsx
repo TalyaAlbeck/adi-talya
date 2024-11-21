@@ -22,6 +22,7 @@ export default function Login(props) {
     props.setUserData(data);
     
 		if (data){
+      localStorage.setItem("currentusername", username)
       navigate(`/folder/${username}`)
     } else {
       console.log("data: ", typeof data);
@@ -36,7 +37,7 @@ export default function Login(props) {
     //server check if user is true
     //create currentUser and LS setItem it
     //only if true Navigate to folder!!
-    navigate(`/folder/${username}`)
+    // navigate(`/folder/${username}`)
 
   }
 
