@@ -24,12 +24,14 @@ export default function Signup() {
         body: JSON.stringify(newUser)
       })
       if (!res.ok) throw Error("this user is alredy exist, pleas choose diferent user name");
-      const data = await res.json();
-      if (data) {
+      // const data = await res.json();
+      // if (data) {
+      if (res.ok) {
         localStorage.setItem("currentusername", newUser.username)
         navigate(`/folder/${username}`)
-        // navigate(`/folder/${username}`)
       }
+      // navigate(`/folder/${username}`)
+      // }
 
     } catch (err) {
       console.error(err);
