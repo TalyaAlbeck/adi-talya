@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Folders from "./components/Folder";
 import File from "./components/File";
+import Layout from "./components/Layout";
 
 function App() {
   const [userData, setUserData] = useState([]);
@@ -43,10 +44,8 @@ function App() {
             path="/Signup"
             element={<Signup setUserData={setUserData} />}
           />
-          <Route
-            path="/folder/:userName"
-            element={<File username={username} />}
-          >
+          <Route path="/folder" element={<Layout />}>
+            <Route path=":userName" element={<File username={username} />} />
             {/* <Route path="/folder/file" element={<File username={username} />} /> */}
           </Route>
           <Route path="*" element={<h1>404 not found</h1>} />

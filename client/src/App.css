@@ -4,6 +4,32 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  position: relative;
+  top: -80px;
+}
+body {
+  overflow: hidden;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: lightblue;
+  width: 100vw;
+  position: relative;
+  left: -33px;
+  top: -35px;
+}
+.icon {
+  position: relative;
+  left: -520px;
+  top: 3px;
+}
+.folderLink {
+  position: relative;
+  left: -470px;
+  top: -3px;
 }
 
 /* סעיף תיקיות */
@@ -96,7 +122,9 @@
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #dcdcdc; /* גבול מסביב לגוף הקובץ */
-  max-width: 600px;
+  max-width: 400px;
+  min-width: 400px;
+  min-height: 400px;
   width: 80%;
   z-index: 999;
   overflow-y: auto;
@@ -109,10 +137,10 @@
 
 .folderBodyDiv h4 {
   cursor: pointer;
-  color: #f44336;
+  color: #ec645b;
   font-size: 20px;
   position: absolute;
-  top: 10px;
+  top: -20px;
   right: 10px;
 }
 
@@ -133,7 +161,7 @@ button {
   margin-top: 20px;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #4CAF50; /* גבול תואם לכפתור */
+  /* border: 2px solid #4CAF50;  */
 }
 
 button:hover {
@@ -150,5 +178,25 @@ button:hover {
 
 .backButton:hover {
   background-color: #45a049;
+}
+
+.addFolderButton {
+  position: absolute;
+  top:15px;
+  left: 1140px;
+  /* left: 140px; */
+  /* background-color: white; */
+  color: black;
+  width: 50px;
+  height: 50px;
+}
+.addFileButton {
+  position: absolute;
+  top:15px;
+  left: 1080px;
+  /* background-color: white; */
+  color: black;
+  width: 50px;
+  height: 50px;
 }
 

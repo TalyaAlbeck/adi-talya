@@ -1,7 +1,8 @@
 import React from "react";
+import { VscNewFolder } from "react-icons/vsc";
 
 export default function AddFolder({ path, username }) {
-  async function addFolderButton() {
+  async function addFolderHandler() {
     console.log("added!");
     console.log(path);
     try {
@@ -14,11 +15,11 @@ export default function AddFolder({ path, username }) {
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ folderName, username, path }),
+            body: JSON.stringify({ folderName, username, path, isFile: false }),
           }
         );
         if (res.status === 404) {
-          alert("there was some problem, the file wasnt saved");
+          alert("there was some problem, the folder wasnt saved");
           throw Error("error while saving the file");
         }
         if (res.ok) {
@@ -33,8 +34,8 @@ export default function AddFolder({ path, username }) {
   }
 
   return (
-    <button style={{ backgroundColor: "lightBlue" }} onClick={addFolderButton}>
-      AddFolder
-    </button>
+    <div className="addFolderButton" onClick={addFolderHandler}>
+      <VscNewFolder size={35} />
+    </div>
   );
 }

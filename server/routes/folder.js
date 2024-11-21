@@ -19,28 +19,52 @@ router.get(`/:username/*`, async (req, res) => {
 })
 
 router.post(`/:username/*`, async (req, res) => {
-    try {
-        let data;
-        if (req.body.path !== "") {
-            data = await makedir(req.body.username + req.body.path + "/" + req.body.folderName)
+    if (!req.body.isFile) {
+        console.log('req.body.isFile: ', req.body.isFile);
+        try {
+            let data;
+            if (req.body.path.length === 0) {
+                console.log('req.body.path : ', req.body.path);
+                data = await makedir(req.body.username + "/" + req.body.folderName)
+            }
+            else {
+                console.log('req.body.path : ', req.body.path);
+                data = await makedir(req.body.username + req.body.path + "/" + req.body.folderName)
+            }
+            if (data) {
+                res.status(200)
+                res.end();
+            }
+            if (!data) {
+                res.status(404)
+                res.end
+            }
         }
-        else {
-            data = await makedir(req.body.username + "/" + req.body.folderName)
-        }
-        if (data) {
-            res.status(200)
-            res.end();
-        }
-        if (!data) {
-            res.status(404)
-            res.end
+        catch (err) {
+            console.log(err);
+            res.status(404).send("the folder wasend maked");
+            return;
+
         }
     }
-    catch (err) {
-        console.log(err);
-        res.status(404).send("the folder wasend maked");
-        return;
+    if (req.body.isFile) {
+        try {
+            let data = await fs.promises.appendFile("./folders/" + req.body.username + req.body.path + "/" + req.body.fileName,
+                JSON.stringify(req.body.folderBody))
+            if (data) {
+                res.status(200)
+                res.end();
+            }
+            if (!data) {
+                res.status(404)
+                res.end
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(404).send("the file wasend maked");
+            return;
 
+        }
     }
 })
 

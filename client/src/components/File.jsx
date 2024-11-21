@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaRegFile, FaRegFolder } from "react-icons/fa";
 import AddFolder from "./AddFolder";
+import AddFile from "./AddFile";
 
 const username = localStorage.getItem("currentusername");
 
@@ -65,6 +66,7 @@ export default function File() {
     <>
       <p>Here are your folders:</p>
       <AddFolder path={folderPath} username={username} />
+      <AddFile path={folderPath} username={username} />
       {userData ? (
         <>
           <div className="folders-section">
