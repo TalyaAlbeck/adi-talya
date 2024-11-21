@@ -12,13 +12,7 @@ exports.ls = async function (name) {
                 const fileContent = await fs.promises.readFile(`folders/${name}/${file}`, { encoding: 'utf-8' })
                 filesArr.push({ name: file, body: fileContent, type: stats.isFile() })
             } else {
-                const folderFiles = await fs.promises.readdir(`folders/${name}/${file}`);
-                const folderArr = [];
-                for (let i of folderFiles) {
-                    const fileFolderContent = await fs.promises.readFile(`folders/${name}/${file}/${i}`, { encoding: 'utf-8' })
-                    folderArr.push({ name: i, body: fileFolderContent, type: stats.isFile() })
-                }
-                filesArr.push({ name: file, body: folderArr, type: stats.isFile() })
+                filesArr.push({ name: file, body: '', type: stats.isFile() })
             }
         }
     }
