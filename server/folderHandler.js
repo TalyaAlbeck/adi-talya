@@ -20,7 +20,7 @@ exports.ls = async function (name) {
 
 }
 
-exports.makedir = async function (folderName) {
+exports.makedir = async function (folderName, userPassword = null, json = null) {
     try {
         await fs.promises.access(`./folders/${folderName}`);
         console.log("this folder already exists");
@@ -30,7 +30,7 @@ exports.makedir = async function (folderName) {
 
         console.log(`${folderName} was maked!`);
         await fs.promises.mkdir(`./folders/${folderName}`)
-        await fs.promises.appendFile(`./folders/${folderName}/${folderName}.json`, JSON.stringify({ name: folderName }))
+        json && await fs.promises.appendFile(`./folders/${folderName}/${folderName}.json`, JSON.stringify({ name: folderName, password: userPassword }))
         return true;
     }
 }

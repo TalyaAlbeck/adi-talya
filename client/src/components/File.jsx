@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { FaRegFile, FaRegFolder } from "react-icons/fa";
+import AddFolder from "./AddFolder";
 
 const username = localStorage.getItem("currentusername");
 
-export default function Folder() {
+export default function File() {
   const firstGetUrl = `http://localhost:8080/folder/${username}`;
   const [userData, setUserData] = useState([]);
   const [folderPath, setFolderPath] = useState("");
@@ -62,11 +64,10 @@ export default function Folder() {
   return (
     <>
       <p>Here are your folders:</p>
+      <AddFolder path={folderPath} username={username} />
       {userData ? (
         <>
-          {/* תיקיות */}
           <div className="folders-section">
-            <h3>Folders</h3>
             <div className="folders">
               {userData
                 .filter((item) => !item.type)
@@ -76,7 +77,7 @@ export default function Folder() {
                     key={`${item.name}.${index}`}
                     onDoubleClick={() => openFolder(item, index)}
                   >
-                    <img src="folder-icon.png" alt="Folder" />
+                    <FaRegFolder />
                     <p>{item.name}</p>
                   </div>
                 ))}
@@ -84,7 +85,6 @@ export default function Folder() {
           </div>
 
           <div className="files-section">
-            <h3>Files</h3>
             {userData
               .filter((item) => item.type)
               .map((item, index) => (
@@ -93,7 +93,7 @@ export default function Folder() {
                   key={`${item.name}.${index}`}
                   onDoubleClick={() => openFolder(item, index)}
                 >
-                  <img src="file-icon.png" alt="File" />
+                  <FaRegFile />
                   <p>{item.name}</p>
                 </div>
               ))}

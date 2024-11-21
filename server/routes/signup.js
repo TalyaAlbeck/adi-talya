@@ -5,21 +5,10 @@ const findUser = require("../folderHandler")
 const { makedir } = require("../folderHandler")
 const { ls } = require("../folderHandler")
 
-
-// function signUp(name) {
-//     if (findUser.makedir(name)) {
-//         console.log("welcome!");
-//         return JSON.stringify("nini")
-//     } else return false;
-// }
-
-
 router.post('/', async (req, res) => {
     console.log(req.body);
     try {
-        let data = await makedir(req.body.username)
-        // makedir(req.body.username)
-        // let data = await fs.promises.readFile(`folders/${req.body.username}/${req.body.username}.json`)
+        let data = await makedir(req.body.username, req.body.password, true)
         console.log('req.body.username.json(): ', req.body.username);
         console.log('data: ', data);
         if (data) {
