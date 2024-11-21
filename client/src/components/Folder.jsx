@@ -10,7 +10,7 @@ export default function Folder({username}) {
 	
     function openFolder(item, index) {
         setFolderName(item) 
-        showBody === index ? setShowBody(undefined) : setShowBody(index)          
+        showBody === index ? setShowBody(undefined) : setShowBody(index);        
     }
 
     useEffect(() => {
@@ -29,16 +29,30 @@ export default function Folder({username}) {
 		}
 		getUserData()
     }, [])
+
+    const filesStyle = {
+      backgroundColor: "Pink"
+    }
+    const folderStyle = {
+      backgroundColor: "lightblue"
+    }
+
+    //to do: check if the item is folder oe file and treat it diferently
+    //we should check in in the server and add another key to the item project- file or folder
     
   return (
     <>
-    <p>the path is: folders // {filderName.name}</p>
+    <p>there are your folders:</p>
     {userData ? userData.map((item, index) => {
-        return (<>
-        <div className='foldersDivs' key={index} onDoubleClick={() => openFolder(item, index)}>{(item.name)}</div>
-        {showBody === index && <div className='folderBodyDiv'>{item.body}<br /> 
-		<button className='closeButton'
-		onClick={() => setShowBody(undefined)}>close</button></div>}
+      return (<>
+        <div className='foldersDivs' key={`${item.name}.${index}`} onDoubleClick={() => openFolder(item, index)} style={item.type ? filesStyle : folderStyle}>{(item.name)}</div>
+        {showBody === index && 
+        <div className='folderBodyDiv'>
+        <p>the path is: folders // {filderName.name}</p><br />  
+        <p>{item.body}</p><br /> 
+		<h4 className='closeButton'
+		onClick={() => setShowBody(undefined)}>x</h4>
+    </div>}
         </>)
     }) : <h1>there is no information</h1>}
     </>
