@@ -3,6 +3,7 @@ import { FaRegFile, FaRegFolder } from "react-icons/fa";
 import AddFolder from "./AddFolder";
 import AddFile from "./AddFile";
 import EditFile from "./editFile";
+import DeleteFile from "./DeleteFile";
 
 const username = localStorage.getItem("currentusername");
 
@@ -130,6 +131,7 @@ export default function File() {
             path={folderPath}
             username={username}
           />
+          <DeleteFile />
         </div>
       )}
     </>

@@ -57,10 +57,6 @@ export default function EditFile({
             }}
             value={bodyContent}
           />
-          {/* <br />
-          <button className="saveContentButton" onClick={postNewContent}>
-            save
-          </button> */}
         </>
       )}
     </>

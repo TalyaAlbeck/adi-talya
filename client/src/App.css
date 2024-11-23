@@ -202,15 +202,18 @@ button:hover {
 .editButton {
   position: relative;
   top: 290px;
+  left: -60px;
 }
 .editInput {
   position: relative;
   top: 300px;
   border: 1px solid black;
 }
-.saveContentButton {
+.deleteButton {
   position: relative;
-  top: 300px;
+  top: 231px;
+  left: 60px;
+  padding: 11px 21px;
 }
 
 footer {

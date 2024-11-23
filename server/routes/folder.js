@@ -134,7 +134,26 @@ router.patch(`/:username/*`, async (req, res) => {
     }
 })
 
+////////////////need no convert it to delete a file, or make one to a file
 
+router.delete(`/:username/*`, async (req, res) => {
+    try {
+        let data = await fs.promises.rmdir("./folders/" + req.body.username + req.body.path)
+        if (data) {
+            res.status(200).send(data)
+            res.end();
+        }
+        if (!data) {
+            res.status(404)
+            res.end
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(404).send("the file wasend deleted");
+        return;
+
+    }
+})
 
 
 module.exports = router;
