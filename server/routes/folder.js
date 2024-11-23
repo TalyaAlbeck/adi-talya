@@ -32,7 +32,7 @@ router.post(`/:username/*`, async (req, res) => {
                 data = await makedir(req.body.username + req.body.path + "/" + req.body.folderName)
             }
             if (data) {
-                res.status(200)
+                res.status(200).send(data)
                 res.end();
             }
             if (!data) {
@@ -52,7 +52,53 @@ router.post(`/:username/*`, async (req, res) => {
             let data = await fs.promises.appendFile("./folders/" + req.body.username + req.body.path + "/" + req.body.fileName,
                 JSON.stringify(req.body.folderBody))
             if (data) {
-                res.status(200)
+                res.status(200).send(data)
+                res.end();
+            }
+            if (!data) {
+                res.status(404)
+                res.end
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(404).send("the file wasend maked");
+            return;
+
+        }
+    }
+})
+
+
+router.post(`/:username`, async (req, res) => {
+    if (!req.body.isFile) {
+        console.log('req.body.isFile: ', req.body.isFile);
+        try {
+            let data;
+            console.log('req.body.path : ', req.body.path);
+            data = await makedir(req.body.username + req.body.path + "/" + req.body.folderName)
+
+            if (data) {
+                res.status(200).send(data)
+                res.end();
+            }
+            if (!data) {
+                res.status(404)
+                res.end
+            }
+        }
+        catch (err) {
+            console.log(err);
+            res.status(404).send("the folder wasend maked");
+            return;
+
+        }
+    }
+    if (req.body.isFile) {
+        try {
+            let data = await fs.promises.appendFile("./folders/" + req.body.username + req.body.path + "/" + req.body.fileName,
+                JSON.stringify(req.body.folderBody))
+            if (data) {
+                res.status(200).send(data)
                 res.end();
             }
             if (!data) {

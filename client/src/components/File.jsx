@@ -64,11 +64,14 @@ export default function File() {
 
   return (
     <>
-      <p>Here are your folders:</p>
+      <h3>Here are your folders:</h3>
+      {/* <br /> */}
       <AddFolder path={folderPath} username={username} />
       <AddFile path={folderPath} username={username} />
       {userData ? (
         <>
+          <p>The path is: folders{folderPath}</p>
+          {/* <br /> */}
           <div className="folders-section">
             <div className="folders">
               {userData

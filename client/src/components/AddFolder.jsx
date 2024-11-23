@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { VscNewFolder } from "react-icons/vsc";
 
 export default function AddFolder({ path, username }) {
   async function addFolderHandler() {
-    console.log("added!");
     console.log(path);
     try {
       const folderName = prompt();
@@ -22,9 +21,9 @@ export default function AddFolder({ path, username }) {
           alert("there was some problem, the folder wasnt saved");
           throw Error("error while saving the file");
         }
-        if (res.ok) {
-          console.log("the folder saved!");
-        }
+        // if (res.ok) {
+
+        // }
       }
       //   const data = await res.json();
     } catch (err) {
@@ -32,6 +31,22 @@ export default function AddFolder({ path, username }) {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    async function getNewFolder() {
+      try {
+        const res = await fetch(
+          `http://localhost:8080/folder/${username}${path}`
+        );
+        if (!res.ok) throw Error("the folder wasnt added");
+        const data = await res.json();
+        setUserData(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getNewFolder();
+  }, []);
 
   return (
     <div className="addFolderButton" onClick={addFolderHandler}>

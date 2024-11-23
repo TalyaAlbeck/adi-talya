@@ -13,18 +13,22 @@ body {
 
 nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  background-color: lightblue;
-  width: 100vw;
-  position: relative;
-  left: -33px;
-  top: -35px;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* background-color: lightblue; */
+  border-right: 1px solid lightgray;
+  width: 100px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
 }
+
 .icon {
   position: relative;
-  left: -520px;
-  top: 3px;
+  top: 13px;
+  margin-bottom: 15px; 
 }
 .folderLink {
   position: relative;
@@ -32,7 +36,6 @@ nav {
   top: -3px;
 }
 
-/* סעיף תיקיות */
 .folders-section {
   margin-bottom: 20px;
 }
@@ -180,12 +183,10 @@ button:hover {
   background-color: #45a049;
 }
 
-.addFolderButton {
+/* .addFolderButton {
   position: absolute;
   top:15px;
   left: 1140px;
-  /* left: 140px; */
-  /* background-color: white; */
   color: black;
   width: 50px;
   height: 50px;
@@ -194,9 +195,28 @@ button:hover {
   position: absolute;
   top:15px;
   left: 1080px;
-  /* background-color: white; */
   color: black;
   width: 50px;
   height: 50px;
+} */
+
+.addFolderButton, .addFileButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  border: none; /* בלי גבולות */
+  cursor: pointer;
+  left: -38.5%;
+  top: 60px;
+}
+
+footer {
+  position: relative;
+  top: 180px;
 }
 
