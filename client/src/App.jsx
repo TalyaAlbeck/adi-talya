@@ -44,9 +44,8 @@ function App() {
             path="/Signup"
             element={<Signup setUserData={setUserData} />}
           />
-          <Route path="/folder" element={<Layout />}>
+          <Route path="/folder" element={<Layout username={username} />}>
             <Route path=":userName" element={<File username={username} />} />
-            {/* <Route path="/folder/file" element={<File username={username} />} /> */}
           </Route>
           <Route path="*" element={<h1>404 not found</h1>} />
         </Routes>

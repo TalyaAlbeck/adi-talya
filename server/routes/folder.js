@@ -114,5 +114,27 @@ router.post(`/:username`, async (req, res) => {
     }
 })
 
+router.patch(`/:username/*`, async (req, res) => {
+    try {
+        let data = await fs.promises.writeFile("./folders/" + req.body.username + req.body.path,
+            JSON.stringify(req.body.bodyContent))
+        if (data) {
+            res.status(200).send(data)
+            res.end();
+        }
+        if (!data) {
+            res.status(404)
+            res.end
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(404).send("the file wasend saved");
+        return;
+
+    }
+})
+
+
+
 
 module.exports = router;

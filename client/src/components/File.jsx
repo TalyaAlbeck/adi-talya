@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaRegFile, FaRegFolder } from "react-icons/fa";
 import AddFolder from "./AddFolder";
 import AddFile from "./AddFile";
+import EditFile from "./editFile";
 
 const username = localStorage.getItem("currentusername");
 
@@ -10,6 +11,7 @@ export default function File() {
   const [userData, setUserData] = useState([]);
   const [folderPath, setFolderPath] = useState("");
   const [showBody, setShowBody] = useState(null);
+  const [bodyContent, setBodyContent] = useState("");
 
   async function getUserData(url) {
     try {
@@ -28,6 +30,7 @@ export default function File() {
 
     if (item.type) {
       setShowBody(showBody === index ? null : index);
+      setBodyContent(item.body);
     } else {
       const path = `${firstGetUrl}${newPath}`;
       getUserData(path);
@@ -64,7 +67,7 @@ export default function File() {
 
   return (
     <>
-      <h3>Here are your folders:</h3>
+      <h3>Here are your folders and files:</h3>
       {/* <br /> */}
       <AddFolder path={folderPath} username={username} />
       <AddFile path={folderPath} username={username} />
@@ -117,10 +120,16 @@ export default function File() {
       {showBody !== null && (
         <div className="folderBodyDiv">
           <p>The path is: folders{folderPath}</p>
-          <p>{userData[showBody].body}</p>
+          <p>{bodyContent}</p>
           <h4 className="closeButton" onClick={closeFile}>
             x
           </h4>
+          <EditFile
+            bodyContent={bodyContent}
+            setBodyContent={setBodyContent}
+            path={folderPath}
+            username={username}
+          />
         </div>
       )}
     </>

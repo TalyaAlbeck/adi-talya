@@ -125,12 +125,13 @@ nav {
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #dcdcdc; /* גבול מסביב לגוף הקובץ */
-  max-width: 400px;
-  min-width: 400px;
-  min-height: 400px;
-  width: 80%;
+  max-width: 500px;
+  min-width: 500px;
+  min-height: 500px;
+  /* width: 80%; */
   z-index: 999;
   overflow-y: auto;
+  overflow-wrap: break-word;
 }
 
 .folderBodyDiv p {
@@ -153,7 +154,7 @@ nav {
 
 /* כפתור back */
 button {
-  background-color: #4CAF50;
+  background-color: #4c6daf;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -168,10 +169,10 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #3c5392;
 }
 .backButton {
-  background-color: #4CAF50;
+  background-color: #4c6daf;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -180,25 +181,8 @@ button:hover {
 }
 
 .backButton:hover {
-  background-color: #45a049;
+  background-color: #3c5392;
 }
-
-/* .addFolderButton {
-  position: absolute;
-  top:15px;
-  left: 1140px;
-  color: black;
-  width: 50px;
-  height: 50px;
-}
-.addFileButton {
-  position: absolute;
-  top:15px;
-  left: 1080px;
-  color: black;
-  width: 50px;
-  height: 50px;
-} */
 
 .addFolderButton, .addFileButton {
   position: relative;
@@ -213,6 +197,20 @@ button:hover {
   cursor: pointer;
   left: -38.5%;
   top: 60px;
+}
+
+.editButton {
+  position: relative;
+  top: 290px;
+}
+.editInput {
+  position: relative;
+  top: 300px;
+  border: 1px solid black;
+}
+.saveContentButton {
+  position: relative;
+  top: 300px;
 }
 
 footer {

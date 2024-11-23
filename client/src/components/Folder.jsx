@@ -1,5 +1,3 @@
-//shows all the folders of user
-//API get
 import React, { useEffect, useState } from "react";
 const username = localStorage.getItem("currentusername");
 
@@ -15,7 +13,6 @@ export default function Folder() {
       const res = await fetch(url);
       if (!res.ok) throw Error("there is no folder for this user");
       const data = await res.json();
-      console.log(JSON.stringify(data));
       setUserData(data);
     } catch (err) {
       console.log(err);
@@ -29,7 +26,6 @@ export default function Folder() {
     } else {
       const path = `${firstGetUrl}/${folderPath + "/" + item.name}`;
       getUserData(path);
-      console.log("folder");
     }
   }
 
@@ -53,7 +49,7 @@ export default function Folder() {
   };
 
   //to do: check if the item is folder oe file and treat it diferently
-  //we should check in in the server and add another key to the item project- file or folder
+  //we should check in the server and add another key to the item project- file or folder
 
   return (
     <>

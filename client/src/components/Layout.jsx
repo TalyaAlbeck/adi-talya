@@ -1,7 +1,9 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { PiGoogleDriveLogoThin } from "react-icons/pi";
 
-export default function Layout() {
+export default function Layout({ username }) {
+  const navigate = useNavigate();
+
   function handleLogout() {
     localStorage.removeItem("currentusername");
   }
@@ -13,7 +15,11 @@ export default function Layout() {
       {typeof localStorage.getItem("currentusername") === "string" ? (
         <>
           <nav>
-            <div>
+            <div
+              onClick={() => {
+                navigate(`/folder/${username}`);
+              }}
+            >
               <PiGoogleDriveLogoThin className="icon" size={60} />
             </div>
             {/* <Link to="folder" className="nav folderLink">
